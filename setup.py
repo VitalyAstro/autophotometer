@@ -10,14 +10,15 @@ setup(
     description='Description of my package',
     python_requires='>=3.7',
     install_requires=[
-        'numpy >= 1.20.2', 
-        'astropy >= 4.3.1',
+    install_requires=[
+        'numpy >= 1.20.2',      #works with 1.21.4
+        'astropy >= 4.2.1',
         'ccdproc >= 2.2.0',
-        'photutils >= 1.2.0',
-        'plotille >= 3.8.0',
-        'requests >= 2.25.1',
-        'scipy >= 1.7.2',
-        'matplotlib >= 3.4.1'],
+        'photutils >= 1.2.0',   #works with 1.3.0
+        'plotille >= 3.8.0',    #works with 4.0.2
+        'requests >= 2.25.1',   #works with 2.28.1
+        'scipy >= 1.4.1',
+        'matplotlib >= 3.4.1'], #works with 3.5.0   
     packages=['autophotometer'],
 #    package_dir={'autophoto': 'src/mypkg'},
 #    package_data={'mypkg': ['data/*.dat']},
