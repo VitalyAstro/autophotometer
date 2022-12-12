@@ -1,8 +1,9 @@
 # Autophotometer
 
 Autophotometer is a semi-automatic Python based pipeline for photometric measurements.
+It was developed as part of Master's Thesis of [Aleksi Mattila](https://github.com/almattil/autophotometer).
 
-It uses Source Extractor and SCAMP to find the detections from the user's FITS images, 
+Autophotometer uses Source Extractor and SCAMP to find the detections from the user's FITS images, 
 and finds matches for them from an online database. 
 Autophotometer's objective is to provide a quick and 
 easy way to study variable and transient stars, 
