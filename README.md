@@ -1,7 +1,7 @@
 # Autophotometer
 
 Autophotometer is a semi-automatic Python based pipeline for photometric measurements.
-It was developed as part of Master's Thesis of [Aleksi Mattila](https://github.com/almattil/autophotometer), but now I forked the program and continue its development on my own. 
+It was developed as part of Master's Thesis of [Aleksi Mattila](https://github.com/almattil/autophotometer) under my supervision, but now I forked the program and continue its development on my own. 
 
 Autophotometer uses Source Extractor and SCAMP to find the detections from the user's FITS images, 
 and finds matches for them from an online database. 
@@ -28,11 +28,11 @@ Autophotometer was developed using Python 3.8 (also known to work in Python 3.7.
 
 You can get the source code from github by typing into your terminal:
 
-git clone https://github.com/VitalyAstro/autophotometer
+    git clone https://github.com/VitalyAstro/autophotometer
 
 To update to the latest version, change into the directory where the code resides on your computer and type into your terminal:
 
-git pull
+    git pull
 
 Install the program using command
 
