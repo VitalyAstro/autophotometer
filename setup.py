@@ -3,11 +3,11 @@ import os
 
 setup(
     name='autophotometer',
-    version='1.0.0',
-    url='https://github.com/almattil/autophotometer.git',
-    author='Aleksi Mattila, Vitaly Neustroev',
-    author_email='aleksi.a.mattila@gmail.com',
-    description='Description of my package',
+    version='1.1.0',
+    url='https://github.com/VitalyAstro/autophotometer.git',
+    author='Vitaly Neustroev, Aleksi Mattila',
+    author_email='vitaly.neustroev@gmail.com',
+    description='A semi-automatic pipeline for photometric measurements',
     python_requires='>=3.7',
     install_requires=[
     install_requires=[
@@ -27,5 +27,5 @@ setup(
     data_files=[(os.path.expanduser('~/.autophotometer'), ['conf/conf_autophot.ini','conf/default.nnw','conf/default.psf',
                                    'conf/default.sex','conf/ph2conf.sex','conf/run1.param','conf/run2.param','conf/scamp.conf'])],
     include_package_data=True,
-    entry_points = {'console_scripts': ['AUTOPHOTOMETER=autophotometer.autophot:cli_main']},
+    entry_points = {'console_scripts': ['AutoPhotometer=autophotometer.autophotometer:cli_main']},
 )
