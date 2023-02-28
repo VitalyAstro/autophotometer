@@ -23,6 +23,7 @@ AutoPhotometer was developed using Python 3.8 (also known to work in Python 3.7.
 
 ### How to use AutoPhotometer without installing it on a computer?
 
+If all the necessary python packages are already installed on the computer, then AutoPhotometer can be used without proper installation.
 Download the source archive from GitHub and unpack it in a directory of your choice.
 Run the program and read Help:
 
