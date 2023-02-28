@@ -104,8 +104,8 @@ def runsex(cmd):
     subprocess.call(cmd)
 
 def findstars(fits_file):
+    OutputLevel = 3
     # Vitaly 20230227
-
     cat2 = "phase2.cat"
     ph2conf_file="ph2conf.sex"
     if not os.path.exists(ph2conf_file):
@@ -163,7 +163,7 @@ def findstars(fits_file):
     runsex(command2)
 
     data2 = read_file(cat2)
-    sg2 = e_sg(data2)
+    # sg2 = e_sg(data2)
 
 
 # Vitaly 20211108
@@ -189,30 +189,41 @@ def findstars(fits_file):
     flags = e_flags(data2)
     fwhm_pix = e_fwhm_pix(data2)
 
-    print("\n\n*******\nFWHM distribution\n")
 
-    HistBins=int((max(FWHMtemp)-min(FWHMtemp))/0.1)
-    print(plotille.hist(FWHMtemp))
-
-    print("\n\n*******\nClipped FWHM distribution\n")
-
-    filtered_data = sigma_clip(FWHMtemp, sigma=3, maxiters=None, masked=False, copy=False, cenfunc='median')
-    HistBins=int((max(filtered_data)-min(filtered_data))/0.05)
-    print(plotille.hist(filtered_data,bins=HistBins))
-
-    Mean3, Median3, StdDev3 = sigma_clipped_stats(FWHMtemp, sigma=3, maxiters=None)
-    print("\n3 sigma Clipped Mean=", Mean3, "=/-", StdDev3)
-    print("Number of star-candidates:        ", len(FWHMtemp))
-    print("Number of clipped star-candidates:", len(filtered_data))
-    print("\n")
-
-
-    #print("\n\n*******\nSorting the detections\n")
     FWHMtemp = []
     for i in range(len(fwhm)):
         if ((magerr[i] <= MagErrLimit) and (sg[i] > sg_thresh)) and not(4 in get_powers(flags[i])):
             FWHMtemp.append(fwhm[i]*3600)
+
+
+    if OutputLevel>2:
+        # print('\n\n*******************************************************************************************')
+        print('                                                FWHM distribution\n')
+    # print('Total number of detections:',len(FWHMtemp))
+        HistBins=int((max(FWHMtemp)-min(FWHMtemp))/0.1)
+        print(plotille.hist(FWHMtemp))
+
     filtered_data = sigma_clip(FWHMtemp, sigma=3, maxiters=None, masked=False, copy=False, cenfunc='median')
+    Mean3, Median3, StdDev3 = sigma_clipped_stats(FWHMtemp, sigma=3, maxiters=None)
+
+    if OutputLevel>1:
+        # print('\n\n*******************************************************************************************')
+        print('                                               Clipped FWHM distribution\n')
+        print(f"\n3 sigma Clipped FWHM Mean = {Mean3:.3f}+/-{StdDev3:.3f}")
+        print("Number of star-candidates:        ", len(FWHMtemp))
+        print("Number of clipped star-candidates:", len(filtered_data))
+        print("\n")
+        HistBins=int((max(filtered_data)-min(filtered_data))/0.05)
+        print(plotille.hist(filtered_data,bins=HistBins))
+
+
+    print("\n\n*******************************************************************************************")
+    print("                                        Sorting the detections\n")
+    # FWHMtemp = []
+    # for i in range(len(fwhm)):
+    #     if ((magerr[i] <= MagErrLimit) and (sg[i] > sg_thresh)) and not(4 in get_powers(flags[i])):
+    #         FWHMtemp.append(fwhm[i]*3600)
+    # filtered_data = sigma_clip(FWHMtemp, sigma=3, maxiters=None, masked=False, copy=False, cenfunc='median')
 
     global xx_all, yy_all, mag_all, fwhm_all
     global ra_sat, dec_sat, ra_nonstar, dec_nonstar, ra_err, dec_err, ra_susp, dec_susp
@@ -329,16 +340,17 @@ def findstars(fits_file):
             det_type.append('Likely    ')
 
 
-    print("\n\n*******\nSorting the detections:\n")
+    # print("\n\n*******\nSorting the detections:\n")
 
     print("Number of all extracted objects:", len(fwhm))
-    print("Number of saturated detections:", n_sat)
-    print("Number of non-stars:", n_nonstars)
-    print("Number of detections with large photometric errors ( >",1.0*MagErrLimit,"): ", n_err)
-    print("Number of suspicious objects (too large or small FWHM): ", n_susp)
     print("Number of stars: ", n_stars)
+    print("Number of non-stars:", n_nonstars)
+    print("Number of saturated detections:", n_sat)
+    print("Number of suspicious objects (too large or too small FWHM): ", n_susp)
+    print("Number of detections with large photometric errors ( >",1.0*MagErrLimit,"): ", n_err)
 
     if n_stars < 5:
-        print('WARNING!!! A very small number of stars. Consider changing the input parameters.')
+        print('WARNING!!! A very small number of stars (',n_stars,'). Consider changing the input parameters.')
+        input('\nPress ENTER:\n')
 
     return ra,dec,mags,fwhms,x,y,Mean3,fwhm_pix,det_type,magerr,ra_all,dec_all,mag_all
