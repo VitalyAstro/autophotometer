@@ -3,7 +3,7 @@ import os
 
 setup(
     name='autophotometer',
-    version='1.1.0',
+    version='1.1.5',
     url='https://github.com/VitalyAstro/autophotometer.git',
     author='Vitaly Neustroev, Aleksi Mattila',
     author_email='vitaly.neustroev@gmail.com',

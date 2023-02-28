@@ -20,20 +20,6 @@ except ImportError:
     isModuleInstalled=0
     import auto_main
 
-    #from . import auto_main
-    
-    #from . import coordfix
-    #from . import starseparator as ss
-    #from . import db_extract   
-    
-    #print('auto_main failed to import')
-
-    #from pathlib import Path
-    #import sys
-    #path_root = Path(__file__).parents[2]
-    #sys.path.append(str(path_root))
-    #print(sys.path)
-
 # ==============================================================================
 def print_history():
     print('Ver 1.1.0 (2023-Feb-27): Command-line options are introduced to enable different options to be passed to the program.')
@@ -62,16 +48,12 @@ def printUsage():
     print("   3) the autophotometer/conf directory from the folder where all the package files are located")
     print(" ")
     print("Options: -abchH")
-    print("     -h: Help")
-    print("     -H: Summary of changes")
-    print("     -a: Astrometric calibration will be performed [default: NO calibration will be performed]")
-    print("     -c: Cosmic ray features will be removed       [default: NO CRs will be removed]")
-    print("     -b: BackUp files will NOT be created if the above operations will be performed")
-    print("                                                   [default: BackUp files will be created]")
-
-##    print("Parameters:")
-##    print("  ObsFitsImage1: FITS-image.")
-##    print("  ObsFitsImage2: optional second FITS-image.")
+    print("  -h: Help")
+    print("  -H: Summary of changes")
+    print("  -a: Astrometric calibration will be performed [default: NO calibration will be performed]")
+    print("  -c: Cosmic ray features will be removed       [default: NO CRs will be removed]")
+    print("  -b: BackUp files will NOT be created if the above operations will be performed")
+    print("                                                [default: BackUp files will be created]")
     print("\n**************************************************************************************\n")
 
 #astrometric calibration

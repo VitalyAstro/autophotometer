@@ -10,17 +10,10 @@ try:
     import autophotometer.db_extract as db_extract
 except ImportError:
 #except ModuleNotFoundError:
-    #isModuleInstalled=0
-    #print('autophotometer failed to import!')   
     import coordfix
     import starseparator as ss
     import db_extract
-    #print('Imported!')
 
-#if not isModuleInstalled:
-    #sys.stderr.write("\n*********************************************************************************\n\n")
-    #sys.stderr.write(" The AutoPhotometer package is not installed! However, it can be used by running \n")
-    #sys.stderr.write(" 'python autophot.py' from the folder where all the package files are located.\n")
 
 import matplotlib.pyplot as plt
 from astropy.visualization import astropy_mpl_style
@@ -43,7 +36,6 @@ path_src_conf = str(path_root) +'/autophotometer/conf/'
 import configparser
 config = configparser.ConfigParser()
 config_file = config.read([path_src_conf+'conf_autophot.ini',os.path.expanduser('~/.autophotometer/conf_autophot.ini'),'conf_autophot.ini'],)
-#config.read('conf_autophot.ini')  #old
 
 sigma_mult = float(config['DEFAULT']['sigma_mult'])
 aperture_rad = float(config['DEFAULT']['aperture_rad'])
