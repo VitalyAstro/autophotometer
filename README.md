@@ -54,11 +54,12 @@ The dual mode is more constricted, as it only uses detections present in both im
 
 Running the program is done using the terminal. It can be called from any directory using the command (if the program installed using pip):
 
-    AutoPhotometer [images]
+    AutoPhotometer [options] [images]
 
 The argument "images" can contain up to two FITS files, depending on which mode you want to use. The program finds the used filter bands from the fits headers, and will give an error if a filter is unsupported. The fits header must contain keywords that describe the coordinate system, coordinate system reference pixels, and other keywords for SCAMP to be able to process them.
 
-AutoPhotometer can remove cosmic ray features and perform the coordinate correction (see Help for the  flags). Because these operations modify the fits files, the program can create a backup of the original file if necessary.
+**Note that before measurements, the FITS-file must be astrometric calibrated and, preferably, cleaned for cosmic ray features.**
+AutoPhotometer can remove cosmic features and perform the coordinate correction (see Help for the flags). Because these operations modify the fits files, the program can create a backup of the original file if necessary.
 
 Then the program shows two histograms. The first histogram shows all the FWHM values of the detections in arcseconds. In the second histogram only the detections within a threshold are kept. This is done to exclude detections with too big or small FWHM, which might be galaxies, clusters, cosmic rays, or other non-star objects. The detections that are left are most likely stars.
 
@@ -67,3 +68,15 @@ Then the program shows a figure of the colour term calculations. In the figure t
 Finally the program draws the fits image, with markers depicting the different detection types and if the detections are present in the database. Note that in the figure, some detections are left unmarked. The detection threshold can be adjusted in the conf\_autophotometer.ini file. 
 
 When a marker is clicked, the program outputs the coordinates of the detected source in degrees, magnitudes, database magnitudes, and errors in the terminal. The program also saves the information of the selected detections and writes it into a file called "Selected\_Mags\_[image name].dat," which is generated in the directory where the program is executed. 
+
+## Example
+
+We provide two FITS-files to play with the program. They are located in the directory example.
+
+The file V455And_V_corrected.fits has already cosmic features removed and is coordinate corrected, while V455And_V_original.fits is the original file for which the above operations **should be applied**:
+
+    AutoPhotometer -ac V455And_V_original.fits
+
+For the corrected file no flags are needed:
+
+    AutoPhotometer V455And_V_corrected.fits
