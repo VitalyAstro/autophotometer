@@ -3,13 +3,12 @@ import os
 
 setup(
     name='autophotometer',
-    version='1.1.5',
+    version='1.1.6',
     url='https://github.com/VitalyAstro/autophotometer.git',
     author='Vitaly Neustroev, Aleksi Mattila',
     author_email='vitaly.neustroev@gmail.com',
     description='A semi-automatic pipeline for photometric measurements',
     python_requires='>=3.7',
-    install_requires=[
     install_requires=[
         'numpy >= 1.20.2',      #works with 1.21.4
         'astropy >= 4.2.1',
